@@ -9562,7 +9562,7 @@ static int initWlan(void)
 #if (CFG_CHIP_RESET_SUPPORT)
 	glResetInit(prGlueInfo);
 #endif
-	kalFbNotifierReg(prGlueInfo);
+	kalNotifierReg(prGlueInfo);
 
 #if CFG_MODIFY_TX_POWER_BY_BAT_VOLT
 	kalBatNotifierReg(prGlueInfo);
@@ -9658,7 +9658,7 @@ static void exitWlan(void)
 		netlink_kernel_release(nl_sk);
 #endif /* CFG_AP_80211KVR_INTERFACE */
 
-	kalFbNotifierUnReg();
+	kalNotifierUnReg();
 
 #if CFG_MODIFY_TX_POWER_BY_BAT_VOLT
 	kalBatNotifierUnReg();
@@ -9809,7 +9809,7 @@ static int wf_pdwnc_notify(struct notifier_block *nb,
 		DBGLOG(HAL, STATE, "wf_pdwnc_notify()\n");
 
 		wlanUnregisterNetdevNotifier();
-		kalFbNotifierUnReg();
+		kalNotifierUnReg();
 
 #if CFG_MODIFY_TX_POWER_BY_BAT_VOLT
 		kalBatNotifierUnReg();
